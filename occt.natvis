@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+  <Type Name="opencascade::handle&lt;*&gt;">
+    <DisplayString Condition="entity==0x00000000"> nullptr </DisplayString>
+    <DisplayString> {(void*)entity} [cnt={entity->count} {*entity}] </DisplayString>
+    <Expand>
+      <ExpandedItem>(opencascade::handle&lt;$T1&gt;::element_type*)entity</ExpandedItem>
+    </Expand>
+  </Type>
+  
+  <!-- gp package -->
+  <Type Name="gp_XY">
+    <DisplayString>[{(float)x} {(float)y}]</DisplayString>
+  </Type>
+
+  <Type Name="gp_XYZ">
+    <DisplayString>[{(float)x} {(float)y} {(float)z}]</DisplayString>
+  </Type>
+  
+  <Type Name="gp_Pnt2d">
+    <AlternativeType Name="gp_Vec2d"/>
+    <AlternativeType Name="gp_Dir2d"/>
+    <DisplayString>{{ x = {(float)coord.x}, y = {(float)coord.y} }}</DisplayString>
+    <Expand>
+      <Item Name="x"> coord.x </Item>
+      <Item Name="y"> coord.y </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Ax2d">
+    <DisplayString>{{ Axis2: location = {loc}, direction = {vdir} }}</DisplayString>
+    <Expand>
+      <Item Name="location"> loc </Item>
+      <Item Name="direction"> vdir </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Ax22d">
+    <DisplayString>{{ Csys2d: location = {point}, xdirection = {vxdir}, ydirection = {vydir} }}</DisplayString>
+    <Expand>
+      <Item Name="location"> point </Item>
+      <Item Name="xdirection"> vxdir </Item>
+      <Item Name="ydirection"> vydir </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Mat2d">
+    <Expand>
+      <ExpandedItem> matrix </ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Lin2d">
+    <DisplayString>{{ line2d: location = {pos.loc}, direction = {pos.vdir} }}</DisplayString>
+    <Expand>
+      <ExpandedItem> pos </ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Circ2d">
+    <DisplayString>{{ circle2d: location = {pos.point}, radius = {radius} }}</DisplayString>
+    <Expand>
+      <ExpandedItem> pos </ExpandedItem>
+      <Item Name="radius"> radius </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Elips2d">
+    <DisplayString>{{ ellipse2d: location = {pos.point}, majorRadius = {majorRadius}, minorRadius = {minorRadius} }}</DisplayString>
+    <Expand>
+      <ExpandedItem> pos </ExpandedItem>
+      <Item Name="majorRadius"> majorRadius </Item>
+      <Item Name="minorRadius"> minorRadius </Item>
+    </Expand>
+  </Type>
+  
+  <Type Name="gp_Pnt">
+    <AlternativeType Name="gp_Vec"/>
+    <AlternativeType Name="gp_Dir"/>
+    <DisplayString>{{ x = {(float)coord.x}, y = {(float)coord.y}, z = {(float)coord.z} }}</DisplayString>
+    <Expand>
+      <Item Name="x"> coord.x </Item>
+      <Item Name="y"> coord.y </Item>
+      <Item Name="z"> coord.z </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Ax1">
+    <DisplayString>{{ Axis3: location = {loc}, direction = {vdir} }}</DisplayString>
+    <Expand>
+      <Item Name="location"> loc </Item>
+      <Item Name="direction"> vdir </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Ax2">
+    <AlternativeType Name="gp_Ax3"/>
+    <DisplayString>{{ Csys3: location = {axis.loc}, normal = {axis.vdir} }}</DisplayString>
+    <Expand>
+      <Item Name="location"> axis.loc </Item>
+      <Item Name="normal"> axis.vdir </Item>
+      <Item Name="xdirection"> vxdir </Item>
+      <Item Name="ydirection"> vydir </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Mat">
+    <Expand>
+      <ExpandedItem> matrix </ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Lin">
+    <DisplayString>{{ line: location = {pos.loc}, direction = {pos.vdir} }}</DisplayString>
+    <Expand>
+      <ExpandedItem> pos </ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Circ">
+    <DisplayString>{{ circle: location = {pos.axis.loc}, radius = {radius}, normal = {pos.axis.vdir} }}</DisplayString>
+    <Expand>
+      <ExpandedItem> pos </ExpandedItem>
+      <Item Name="radius"> radius </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Elips">
+    <DisplayString>{{ ellipse: location = {pos.axis.loc}, majorRadius = {majorRadius}, minorRadius = {minorRadius}, normal = {pos.axis.vdir} }}</DisplayString>
+    <Expand>
+      <ExpandedItem> pos </ExpandedItem>
+      <Item Name="majorRadius"> majorRadius </Item>
+      <Item Name="minorRadius"> minorRadius </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="gp_Pln">
+    <DisplayString>{{ plane: location = {pos.axis.loc}, normal = {pos.axis.vdir} }}</DisplayString>
+    <Expand>
+      <ExpandedItem> pos </ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="TCollection_AsciiString">
+    <DisplayString>{mylength}: {mystring,s}</DisplayString>
+  </Type>
+  
+  <Type Name="TCollection_ExtendedString">
+    <DisplayString>{mylength}: {mystring,su}</DisplayString>
+  </Type>
+
+  <Type Name="NCollection_Array1&lt;*&gt;">
+    <DisplayString Condition="myUpperBound &lt; myLowerBound"> empty </DisplayString>
+    <DisplayString>{{ size = {myUpperBound - myLowerBound + 1} }}</DisplayString>
+    <Expand>
+      <Item Condition="myUpperBound >= myLowerBound" Name="[size]"> myUpperBound - myLowerBound + 1 </Item>
+      <Item Condition="myUpperBound >= myLowerBound" Name="[deletable]"> myDeletable </Item>
+      <ArrayItems Condition="myUpperBound >= myLowerBound">
+        <Size>myUpperBound - myLowerBound + 1</Size>
+        <ValuePointer>myData + myLowerBound</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+
+  <Type Name="NCollection_Array2&lt;*&gt;">
+    <DisplayString Condition="myUpperCol &lt; myLowerCol || myUpperRow &lt; myLowerRow"> empty </DisplayString>
+    <DisplayString>{{ extent = ({ myUpperCol-myLowerCol+1 }, { myUpperRow-myLowerRow+1 }) }}</DisplayString>
+    <Expand>
+      <ArrayItems Condition="myUpperCol > myLowerCol &amp;&amp; myUpperRow > myLowerRow">
+        <Direction>Forward</Direction>
+        <Rank>2</Rank>
+        <!-- the second dimension size wrong, as no [$i] -->
+        <Size> myUpperCol - myLowerCol + 1 </Size>
+        <ValuePointer> myStart </ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+
+  <Type Name="NCollection_Sequence&lt;*&gt;">
+    <DisplayString Condition="mySize == 0"> empty </DisplayString>
+    <DisplayString>{{ size = { mySize } }}</DisplayString>
+    <Expand>
+      <LinkedListItems Condition="mySize != 0">
+        <Size> mySize  </Size>
+        <HeadPointer>myFirstItem</HeadPointer>
+        <NextPointer>myNext</NextPointer>
+        <ValueNode>*($T1*)(sizeof(NCollection_SeqNode) + ((char *)this))</ValueNode>
+      </LinkedListItems>
+    </Expand>
+  </Type>
+  
+  <Type Name="NCollection_Vector&lt;*&gt;">
+  	<DisplayString>NCollection_Vector [{myLength}]</DisplayString>
+  	<Expand>
+  		<IndexListItems Condition="myData->Length&lt;myLength">
+  			<Size>myData->Length</Size>
+  			<ValueNode>*($T1*)((char*)myData->DataPtr + $i * myItemSize)</ValueNode>
+  		</IndexListItems>
+  		<IndexListItems Condition="myData->Length&gt;=myLength">
+  			<Size>myLength</Size>
+  			<ValueNode>*($T1*)((char*)myData->DataPtr + $i * myItemSize)</ValueNode>
+  		</IndexListItems>
+  	</Expand>
+  </Type>
+
+  <Type Name="NCollection_List&lt;*&gt;">
+    <DisplayString>NCollection_List [{myLength}]</DisplayString>
+    <Expand>
+      <LinkedListItems>
+        <Size>myLength</Size>
+        <HeadPointer>myFirst</HeadPointer>
+        <NextPointer>myNext</NextPointer>
+        <ValueNode>*($T1*)(sizeof(NCollection_ListNode) + ((char *)this))</ValueNode>
+      </LinkedListItems>
+    </Expand>
+  </Type>
+
+  <Type Name="NCollection_Map&lt;*&gt;">
+    <DisplayString>NCollection_Map [{mySize}]</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="120" ExcludeView="Test">
+        <Variable Name="iBucket" InitialValue="0"/>
+        <Variable Name="pData" InitialValue="myData1"/>
+
+        <Size> mySize </Size>
+        <Loop>
+          <Break Condition="iBucket > myNbBuckets"/>
+          <If Condition="pData[iBucket] != nullptr">
+            <Item> (MapNode*)pData[iBucket]</Item>
+          </If>
+          <Exec>iBucket = iBucket + 1</Exec>
+        </Loop>
+      </CustomListItems>
+    </Expand>
+  </Type>
+
+  <Type Name="NCollection_DataMap&lt;*&gt;">
+    <DisplayString>NCollection_DataMap [{mySize}]</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="120" ExcludeView="Test">
+        <Variable Name="iBucket" InitialValue="0"/>
+        <Variable Name="pData" InitialValue="myData1"/>
+
+        <Size> mySize </Size>
+        <Loop>
+          <Break Condition="iBucket > myNbBuckets"/>
+          <If Condition="pData[iBucket] != nullptr">
+            <Item> (DataMapNode*)pData[iBucket]</Item>
+          </If>
+          <Exec>iBucket = iBucket + 1</Exec>
+        </Loop>
+      </CustomListItems>
+    </Expand>
+  </Type>
+
+  <Type Name="NCollection_DoubleMap&lt;*&gt;">
+    <DisplayString>NCollection_DoubleMap [{mySize}]</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="120" ExcludeView="Test">
+        <Variable Name="iBucket" InitialValue="0"/>
+        <Variable Name="pData" InitialValue="myData1"/>
+
+        <Size> mySize </Size>
+        <Loop>
+          <Break Condition="iBucket > myNbBuckets"/>
+          <If Condition="pData[iBucket] != nullptr">
+            <Item> (DoubleMapNode*)pData[iBucket]</Item>
+          </If>
+          <Exec>iBucket = iBucket + 1</Exec>
+        </Loop>
+      </CustomListItems>
+    </Expand>
+  </Type>
+
+  <Type Name="NCollection_IndexedMap&lt;*&gt;">
+    <DisplayString>NCollection_IndexedMap [{mySize}]</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="120" ExcludeView="Test">
+        <Variable Name="iBucket" InitialValue="0"/>
+        <Variable Name="pData" InitialValue="myData1"/>
+
+        <Size> mySize </Size>
+        <Loop>
+          <Break Condition="iBucket > myNbBuckets"/>
+          <If Condition="pData[iBucket] != nullptr">
+            <Item> (IndexedMapNode*)pData[iBucket]</Item>
+          </If>
+          <Exec>iBucket = iBucket + 1</Exec>
+        </Loop>
+      </CustomListItems>
+    </Expand>
+  </Type>
+
+  <Type Name="NCollection_IndexedDataMap&lt;*&gt;">
+    <DisplayString>NCollection_IndexedDataMap [{mySize}]</DisplayString>
+    <Expand>
+      <CustomListItems MaxItemsPerView="120" ExcludeView="Test">
+        <Variable Name="iBucket" InitialValue="0"/>
+        <Variable Name="pData" InitialValue="myData1"/>
+
+        <Size> mySize </Size>
+        <Loop>
+          <Break Condition="iBucket > myNbBuckets"/>
+          <If Condition="pData[iBucket] != nullptr">
+            <Item> (IndexedDataMapNode*)pData[iBucket]</Item>
+          </If>
+          <Exec>iBucket = iBucket + 1</Exec>
+        </Loop>
+      </CustomListItems>
+    </Expand>
+  </Type>
+
+  <Type Name="Geom_CartesianPoint">
+    <Expand>
+      <Item Name="RefCount"> count </Item>
+      <ExpandedItem> gpPnt </ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="Geom_Line">
+    <Expand>
+      <Item Name="RefCount"> count </Item>
+      <ExpandedItem> pos </ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="Geom_Circle">
+    <Expand>
+      <Item Name="RefCount"> count </Item>
+      <ExpandedItem> pos </ExpandedItem>
+      <Item Name="Radius"> radius </Item>
+    </Expand>
+  </Type>
+
+  <Type Name="Geom_Plane">
+    <Expand>
+      <Item Name="RefCount"> count </Item>
+      <ExpandedItem> pos </ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="Geom_CylindricalSurface">
+    <Expand>
+      <Item Name="RefCount"> count </Item>
+      <ExpandedItem> pos </ExpandedItem>
+      <Item Name="Radius"> radius </Item>
+    </Expand>
+  </Type>
+
+</AutoVisualizer>
