@@ -8,6 +8,27 @@
       <ExpandedItem>(opencascade::handle&lt;$T1&gt;::element_type*)entity</ExpandedItem>
     </Expand>
   </Type>
+
+  <!-- math package -->
+  <Type Name="math_SingleTab&lt;*&gt;">
+    <DisplayString Condition="Last &lt; First"> empty </DisplayString>
+    <DisplayString>{{ size = {Last - First + 1} }}</DisplayString>
+    <Expand>
+      <Item Condition="Last >= First" Name="[size]"> Last - First + 1 </Item>
+      <ArrayItems Condition="Last >= First">
+        <Size>Last - First + 1</Size>
+        <ValuePointer>($T1*)(Addr) + First</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+
+  <Type Name="math_Vector">
+    <DisplayString Condition="UpperIndex &lt; LowerIndex"> empty </DisplayString>
+    <DisplayString>{{ size = {UpperIndex - LowerIndex + 1} }}</DisplayString>
+    <Expand>
+      <ExpandedItem> Array </ExpandedItem>
+    </Expand>
+  </Type>
   
   <!-- gp package -->
   <Type Name="gp_XY">
