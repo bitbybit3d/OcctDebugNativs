@@ -22,10 +22,36 @@
     </Expand>
   </Type>
 
+  <Type Name="math_DoubleTab">
+    <DisplayString Condition="UppC &lt; LowC || UppR &lt; LowR"> empty </DisplayString>
+    <DisplayString>{{ extent = ({ UppC-LowC+1 }, { UppR-LowR+1 }) }}</DisplayString>
+    <Expand>
+      <ArrayItems Condition="UppC > LowC &amp;&amp; UppR > LowR">
+        <Direction>Forward</Direction>
+        <Rank>2</Rank>
+        <!-- the second dimension size maybe wrong, when the row size is not equal the col size, as no [$i] -->
+        <Size> UppC - LowC + 1 </Size>
+        <ValuePointer> (Standard_Real*)Addr </ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+
   <Type Name="math_Vector">
     <DisplayString Condition="UpperIndex &lt; LowerIndex"> empty </DisplayString>
     <DisplayString>{{ size = {UpperIndex - LowerIndex + 1} }}</DisplayString>
     <Expand>
+      <ExpandedItem> Array </ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="math_Matrix">
+    <DisplayString Condition="UpperColIndex &lt; LowerColIndex || UpperRowIndex &lt; LowerRowIndex"> empty </DisplayString>
+    <DisplayString>{{ extent = ({ UpperColIndex-LowerColIndex+1 }, { UpperRowIndex-LowerRowIndex+1 }) }}</DisplayString>
+    <Expand>
+      <Item Name="LowerRowIndex"> LowerRowIndex </Item>
+      <Item Name="UpperRowIndex"> UpperRowIndex </Item>
+      <Item Name="LowerColIndex"> LowerColIndex </Item>
+      <Item Name="UpperColIndex"> UpperColIndex </Item>
       <ExpandedItem> Array </ExpandedItem>
     </Expand>
   </Type>
@@ -191,7 +217,7 @@
       <ArrayItems Condition="myUpperCol > myLowerCol &amp;&amp; myUpperRow > myLowerRow">
         <Direction>Forward</Direction>
         <Rank>2</Rank>
-        <!-- the second dimension size wrong, as no [$i] -->
+        <!-- the second dimension size maybe wrong, when the row size is not equal the col size, as no [$i] -->
         <Size> myUpperCol - myLowerCol + 1 </Size>
         <ValuePointer> myStart </ValuePointer>
       </ArrayItems>
