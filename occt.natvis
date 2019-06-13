@@ -24,13 +24,20 @@
 
   <Type Name="math_DoubleTab">
     <DisplayString Condition="UppC &lt; LowC || UppR &lt; LowR"> empty </DisplayString>
-    <DisplayString>{{ extent = ({ UppC-LowC+1 }, { UppR-LowR+1 }) }}</DisplayString>
+    <DisplayString>{{ extent = ({ UppR-LowR+1 }, { UppC-LowC+1 }) }}</DisplayString>
     <Expand>
-      <ArrayItems Condition="UppC > LowC &amp;&amp; UppR > LowR">
+      <ArrayItems Condition="UppC > LowC &amp;&amp; UppR > LowR &amp;&amp; UppC - LowC == UppR - LowR">
         <Direction>Forward</Direction>
         <Rank>2</Rank>
-        <!-- the second dimension size maybe wrong, when the row size is not equal the col size, as no [$i] -->
+        <!-- only display when the row size equal the col size, as no [$i] -->
         <Size> UppC - LowC + 1 </Size>
+        <ValuePointer> (Standard_Real*)Addr </ValuePointer>
+      </ArrayItems>
+      <Item Condition="UppC - LowC != UppR - LowR" Name="[RowSize]"> UppR - LowR + 1 </Item>
+      <Item Condition="UppC - LowC != UppR - LowR" Name="[ColSize]"> UppC - LowC + 1 </Item>
+      <ArrayItems Condition="UppC > LowC &amp;&amp; UppR > LowR">
+        <!-- as no [$i], make it display as one array -->
+        <Size> (UppC-LowC+1)*(UppR-LowR+1) </Size>
         <ValuePointer> (Standard_Real*)Addr </ValuePointer>
       </ArrayItems>
     </Expand>
@@ -46,12 +53,8 @@
 
   <Type Name="math_Matrix">
     <DisplayString Condition="UpperColIndex &lt; LowerColIndex || UpperRowIndex &lt; LowerRowIndex"> empty </DisplayString>
-    <DisplayString>{{ extent = ({ UpperColIndex-LowerColIndex+1 }, { UpperRowIndex-LowerRowIndex+1 }) }}</DisplayString>
+    <DisplayString>{{ extent = ({ UpperRowIndex-LowerRowIndex+1 }, { UpperColIndex-LowerColIndex+1 } ) }}</DisplayString>
     <Expand>
-      <Item Name="LowerRowIndex"> LowerRowIndex </Item>
-      <Item Name="UpperRowIndex"> UpperRowIndex </Item>
-      <Item Name="LowerColIndex"> LowerColIndex </Item>
-      <Item Name="UpperColIndex"> UpperColIndex </Item>
       <ExpandedItem> Array </ExpandedItem>
     </Expand>
   </Type>
@@ -189,6 +192,8 @@
     </Expand>
   </Type>
 
+  <!-- NCollection package -->
+  
   <Type Name="TCollection_AsciiString">
     <DisplayString>{mylength}: {mystring,s}</DisplayString>
   </Type>
@@ -212,13 +217,20 @@
 
   <Type Name="NCollection_Array2&lt;*&gt;">
     <DisplayString Condition="myUpperCol &lt; myLowerCol || myUpperRow &lt; myLowerRow"> empty </DisplayString>
-    <DisplayString>{{ extent = ({ myUpperCol-myLowerCol+1 }, { myUpperRow-myLowerRow+1 }) }}</DisplayString>
+    <DisplayString>{{ extent = ({ myUpperRow-myLowerRow+1 }, { myUpperCol-myLowerCol+1 }) }}</DisplayString>
     <Expand>
-      <ArrayItems Condition="myUpperCol > myLowerCol &amp;&amp; myUpperRow > myLowerRow">
+      <ArrayItems Condition="myUpperCol > myLowerCol &amp;&amp; myUpperRow > myLowerRow &amp;&amp; myUpperCol - myLowerCol == myUpperRow - myLowerRow">
         <Direction>Forward</Direction>
         <Rank>2</Rank>
-        <!-- the second dimension size maybe wrong, when the row size is not equal the col size, as no [$i] -->
+        <!-- only display when the row size equal the col size, as no [$i] -->
         <Size> myUpperCol - myLowerCol + 1 </Size>
+        <ValuePointer> myStart </ValuePointer>
+      </ArrayItems>
+      <Item Condition="myUpperCol - myLowerCol != myUpperRow - myLowerRow" Name="[RowSize]"> myUpperRow-myLowerRow+1 </Item>
+      <Item Condition="myUpperCol - myLowerCol != myUpperRow - myLowerRow" Name="[ColSize]"> myUpperCol-myLowerCol+1 </Item>
+      <ArrayItems Condition="myUpperCol > myLowerCol &amp;&amp; myUpperRow > myLowerRow">
+        <!-- as no [$i], make it display as one array -->
+        <Size> (myUpperCol - myLowerCol + 1)*(myUpperRow - myLowerRow + 1) </Size>
         <ValuePointer> myStart </ValuePointer>
       </ArrayItems>
     </Expand>
@@ -357,6 +369,8 @@
       </CustomListItems>
     </Expand>
   </Type>
+
+  <!-- Geom package -->
 
   <Type Name="Geom_CartesianPoint">
     <Expand>
