@@ -409,4 +409,21 @@
     </Expand>
   </Type>
 
+  <!-- TopoDS package -->
+  <Type Name="TopLoc_SListOfItemLocation">
+    <DisplayString Condition="myNode.entity == 0x00000000"> nullptr </DisplayString>
+  </Type>
+
+  <Type Name="TopLoc_Location">
+    <DisplayString Condition="myItems.myNode.entity == 0x00000000"> nullptr </DisplayString>
+  </Type>
+
+  <Type Name="TopoDS_Shape">
+    <DisplayString>{myOrient} {myTShape} loc={myLocation}</DisplayString>
+  </Type>
+
+  <Type Name="TopoDS_TShape">
+    <DisplayString>subshapes={myShapes} flags={myFlags}</DisplayString>
+  </Type>
+
 </AutoVisualizer>
