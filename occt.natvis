@@ -374,6 +374,7 @@
 
   <Type Name="Geom_CartesianPoint">
     <Expand>
+      <Item Name="Name"> "Geom_CartesianPoint" </Item>
       <Item Name="RefCount"> count </Item>
       <ExpandedItem> gpPnt </ExpandedItem>
     </Expand>
@@ -381,6 +382,7 @@
 
   <Type Name="Geom_Line">
     <Expand>
+      <Item Name="Name"> "Geom_Line" </Item>
       <Item Name="RefCount"> count </Item>
       <ExpandedItem> pos </ExpandedItem>
     </Expand>
@@ -388,6 +390,7 @@
 
   <Type Name="Geom_Circle">
     <Expand>
+      <Item Name="Name"> "Geom_Circle" </Item>
       <Item Name="RefCount"> count </Item>
       <ExpandedItem> pos </ExpandedItem>
       <Item Name="Radius"> radius </Item>
@@ -396,6 +399,7 @@
 
   <Type Name="Geom_Plane">
     <Expand>
+      <Item Name="Type"> "Geom_Plane" </Item>
       <Item Name="RefCount"> count </Item>
       <ExpandedItem> pos </ExpandedItem>
     </Expand>
@@ -403,6 +407,7 @@
 
   <Type Name="Geom_CylindricalSurface">
     <Expand>
+      <Item Name="Type"> "Geom_CylindricalSurface" </Item>
       <Item Name="RefCount"> count </Item>
       <ExpandedItem> pos </ExpandedItem>
       <Item Name="Radius"> radius </Item>
