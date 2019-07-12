@@ -35,7 +35,7 @@
       </ArrayItems>
       <Item Condition="UppC - LowC != UppR - LowR" Name="[RowSize]"> UppR - LowR + 1 </Item>
       <Item Condition="UppC - LowC != UppR - LowR" Name="[ColSize]"> UppC - LowC + 1 </Item>
-      <ArrayItems Condition="UppC > LowC &amp;&amp; UppR > LowR">
+      <ArrayItems Condition="UppC - LowC != UppR - LowR">
         <!-- as no [$i], make it display as one array -->
         <Size> (UppC-LowC+1)*(UppR-LowR+1) </Size>
         <ValuePointer> (Standard_Real*)Addr </ValuePointer>
