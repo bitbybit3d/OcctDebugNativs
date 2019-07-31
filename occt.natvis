@@ -228,7 +228,7 @@
       </ArrayItems>
       <Item Condition="myUpperCol - myLowerCol != myUpperRow - myLowerRow" Name="[RowSize]"> myUpperRow-myLowerRow+1 </Item>
       <Item Condition="myUpperCol - myLowerCol != myUpperRow - myLowerRow" Name="[ColSize]"> myUpperCol-myLowerCol+1 </Item>
-      <ArrayItems Condition="myUpperCol > myLowerCol &amp;&amp; myUpperRow > myLowerRow">
+      <ArrayItems Condition="myUpperCol > myLowerCol &amp;&amp; myUpperRow > myLowerRow &amp;&amp; myUpperCol - myLowerCol != myUpperRow - myLowerRow">
         <!-- as no [$i], make it display as one array -->
         <Size> (myUpperCol - myLowerCol + 1)*(myUpperRow - myLowerRow + 1) </Size>
         <ValuePointer> myStart </ValuePointer>
