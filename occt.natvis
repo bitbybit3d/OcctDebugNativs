@@ -26,18 +26,10 @@
     <DisplayString Condition="UppC &lt; LowC || UppR &lt; LowR"> empty </DisplayString>
     <DisplayString>{{ extent = ({ UppR-LowR+1 }, { UppC-LowC+1 }) }}</DisplayString>
     <Expand>
-      <ArrayItems Condition="UppC > LowC &amp;&amp; UppR > LowR &amp;&amp; UppC - LowC == UppR - LowR">
+      <ArrayItems>
         <Direction>Forward</Direction>
         <Rank>2</Rank>
-        <!-- only display when the row size equal the col size, as no [$i] -->
-        <Size> UppC - LowC + 1 </Size>
-        <ValuePointer> (Standard_Real*)Addr </ValuePointer>
-      </ArrayItems>
-      <Item Condition="UppC - LowC != UppR - LowR" Name="[RowSize]"> UppR - LowR + 1 </Item>
-      <Item Condition="UppC - LowC != UppR - LowR" Name="[ColSize]"> UppC - LowC + 1 </Item>
-      <ArrayItems Condition="UppC - LowC != UppR - LowR">
-        <!-- as no [$i], make it display as one array -->
-        <Size> (UppC-LowC+1)*(UppR-LowR+1) </Size>
+        <Size>$i == 0 ? (UppR - LowR + 1) : (UppC - LowC + 1) </Size>
         <ValuePointer> (Standard_Real*)Addr </ValuePointer>
       </ArrayItems>
     </Expand>
@@ -219,18 +211,10 @@
     <DisplayString Condition="myUpperCol &lt; myLowerCol || myUpperRow &lt; myLowerRow"> empty </DisplayString>
     <DisplayString>{{ extent = ({ myUpperRow-myLowerRow+1 }, { myUpperCol-myLowerCol+1 }) }}</DisplayString>
     <Expand>
-      <ArrayItems Condition="myUpperCol > myLowerCol &amp;&amp; myUpperRow > myLowerRow &amp;&amp; myUpperCol - myLowerCol == myUpperRow - myLowerRow">
+      <ArrayItems>
         <Direction>Forward</Direction>
         <Rank>2</Rank>
-        <!-- only display when the row size equal the col size, as no [$i] -->
-        <Size> myUpperCol - myLowerCol + 1 </Size>
-        <ValuePointer> myStart </ValuePointer>
-      </ArrayItems>
-      <Item Condition="myUpperCol - myLowerCol != myUpperRow - myLowerRow" Name="[RowSize]"> myUpperRow-myLowerRow+1 </Item>
-      <Item Condition="myUpperCol - myLowerCol != myUpperRow - myLowerRow" Name="[ColSize]"> myUpperCol-myLowerCol+1 </Item>
-      <ArrayItems Condition="myUpperCol > myLowerCol &amp;&amp; myUpperRow > myLowerRow &amp;&amp; myUpperCol - myLowerCol != myUpperRow - myLowerRow">
-        <!-- as no [$i], make it display as one array -->
-        <Size> (myUpperCol - myLowerCol + 1)*(myUpperRow - myLowerRow + 1) </Size>
+        <Size>$i == 0 ? (myUpperRow - myLowerRow + 1) : (myUpperCol - myLowerCol + 1) </Size>
         <ValuePointer> myStart </ValuePointer>
       </ArrayItems>
     </Expand>
